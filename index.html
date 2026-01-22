@@ -28,7 +28,7 @@ body{
   background-size:cover;
 }
 
-/* LICENSE BAR (HEADER) */
+/* LICENSE BAR */
 .license-bar{
   background:#0f172a;
   color:#e5e7eb;
@@ -54,7 +54,6 @@ header h1{
   font-weight:950;
   letter-spacing:.14em;
   color:var(--gold);
-  text-shadow:0 4px 16px rgba(0,0,0,.65);
 }
 
 header p{
@@ -79,7 +78,6 @@ header p{
   background:linear-gradient(180deg, rgba(10,30,53,.88), rgba(7,20,39,.92));
   border:1px solid rgba(255,255,255,.16);
   box-shadow:var(--shadow);
-  overflow:hidden;
 }
 
 .card.pad{padding:22px;}
@@ -170,32 +168,15 @@ button{
 .under-rsvp-logo img{
   max-width:160px;
   width:100%;
-  margin-bottom:8px;
+  margin-bottom:10px;
 }
 
-.logo-placeholder{
-  font-size:12px;
-  letter-spacing:.12em;
-  opacity:.85;
-}
-
-/* LICENSE FOOTER */
 .license-footer{
-  margin-top:12px;
+  margin-top:10px;
   font-size:11px;
   line-height:1.5;
   opacity:.85;
   text-align:center;
-}
-
-/* ADMIN PANEL */
-.admin{
-  display:none;
-  margin-top:18px;
-  padding:16px;
-  border-radius:18px;
-  background:rgba(0,0,0,.55);
-  border:1px solid rgba(255,255,255,.16);
 }
 </style>
 </head>
@@ -277,12 +258,13 @@ button{
     <textarea name="notes"></textarea>
 
     <button class="btn-primary" type="submit">
-      Submit RSVP + Add to Calendar
+      Submit RSVP
     </button>
 
+    <!-- LOGOS -->
     <div class="under-rsvp-logo">
-      <img src="assets/logo.jpg" alt="Move Mountains Team Logo">
-      <div class="logo-placeholder">OPEN MIND • OPEN DOORS LOGO PLACEMENT</div>
+      <img src="assets/coin-logo.jpeg" alt="Move Mountains Team Coin Logo">
+      <img src="assets/open-logo.jpeg" alt="Open Mind Open Doors Logo">
 
       <div class="license-footer">
         Marc Howard Merritt – NYS Life, Health & Fixed Annuity Licensed since 2001 (LA #1010090)<br>
@@ -298,17 +280,9 @@ button{
 </div>
 
 <script>
-/* CONFIG */
-const MASTER_ZOOM_LINK="https://zoom.us/j/XXXXXXXXXXX";
-const START=new Date(2026,0,28);
-const COUNT=10;
-
-function nextWed(d){
-  d=new Date(d);
-  d.setDate(d.getDate()+((3-d.getDay()+7)%7));
-  return d;
-}
+const START=new Date(2026,0,28),COUNT=10;
 const sel=document.getElementById("dateSelect");
+function nextWed(d){d=new Date(d);d.setDate(d.getDate()+((3-d.getDay()+7)%7));return d;}
 let d=nextWed(new Date()>START?new Date():START);
 for(let i=0;i<COUNT;i++){
   const o=document.createElement("option");
@@ -317,29 +291,6 @@ for(let i=0;i<COUNT;i++){
   sel.appendChild(o);
   d.setDate(d.getDate()+7);
 }
-
-document.getElementById("rsvpForm").onsubmit=e=>{
-  e.preventDefault();
-  const f=new FormData(e.target);
-  const date=new Date(f.get("date"));
-  const body=
-`FEG MMT Training RSVP
-
-Name: ${f.get("name")}
-Email: ${f.get("email")}
-Date: ${date.toDateString()}
-Topic: ${f.get("topic")}
-
-Zoom Link:
-${MASTER_ZOOM_LINK}
-
-Notes:
-${f.get("notes")||"None"}`;
-  window.location.href=
-    "mailto:mhmerritt@gmail.com?cc=mteopengco@gmail.com"
-    +"&subject="+encodeURIComponent("FEG MMT Wednesday Training RSVP")
-    +"&body="+encodeURIComponent(body);
-};
 </script>
 
 </body>
