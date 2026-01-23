@@ -35,6 +35,7 @@ body{
   font-size:12px;
   text-align:center;
   padding:8px 14px;
+  letter-spacing:.2px;
 }
 
 .wrap{
@@ -54,6 +55,7 @@ header h1{
   font-weight:950;
   letter-spacing:.14em;
   color:var(--gold);
+  text-shadow:0 4px 16px rgba(0,0,0,.65);
 }
 
 header p{
@@ -78,6 +80,7 @@ header p{
   background:linear-gradient(180deg, rgba(10,30,53,.88), rgba(7,20,39,.92));
   border:1px solid rgba(255,255,255,.16);
   box-shadow:var(--shadow);
+  overflow:hidden;
 }
 
 .card.pad{padding:22px;}
@@ -87,6 +90,7 @@ header p{
   font-size:32px;
   font-weight:950;
   color:var(--gold);
+  letter-spacing:.05em;
 }
 
 .invite-sub{
@@ -99,6 +103,7 @@ header p{
 .mountain-divider svg{
   width:100%;
   height:70px;
+  display:block;
 }
 
 ul{list-style:none;padding:0;margin:0;}
@@ -160,15 +165,22 @@ button{
   color:#04121f;
 }
 
+/* LOGOS – SAME SIZE */
 .under-rsvp-logo{
   text-align:center;
   margin-top:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
 }
 
-.under-rsvp-logo img{
-  max-width:160px;
-  width:100%;
-  margin-bottom:10px;
+.under-rsvp-logo .brand-logo{
+  width:160px;
+  max-width:70vw;
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.45));
 }
 
 .license-footer{
@@ -177,6 +189,13 @@ button{
   line-height:1.5;
   opacity:.85;
   text-align:center;
+}
+
+.helper{
+  font-size:12px;
+  opacity:.9;
+  margin:-6px 0 12px;
+  line-height:1.35;
 }
 </style>
 </head>
@@ -224,7 +243,7 @@ button{
   <div class="crusade">Build • Recruit • Lead • Scale • Succeed</div>
 
   <div class="event">
-    <b>📍 Format</b> Live via Zoom (link provided upon RSVP)<br>
+    <b>📍 Format</b> Live via Zoom (link provided upon RSVP + included in your calendar invite)<br>
     <b>📅 Schedule</b> Every Wednesday starting <b>January 28, 2026</b><br>
     <b>⏰ Time</b> 7:00 PM – 8:00 PM (60 minutes max)<br>
     <b>📝 RSVP</b> Select which upcoming Wednesday you would like to attend
@@ -245,26 +264,25 @@ button{
     <input name="email" type="email" required>
 
     <label>Which upcoming Wednesday would you like to attend?</label>
-    <select name="date" id="dateSelect" required></select>
+    <select name="dateISO" id="dateSelect" required></select>
+    <div class="helper">After you submit, a calendar invite (.ics) will download automatically.</div>
 
     <label>Requested Training Topic</label>
     <select name="topic" required>
       <option>FEG MMT Business Builders Fast Track</option>
       <option>The Momentum Effect</option>
-      <option>Recruitment & Social Media Prospecting</option>
+      <option>Recruitment & Prospecting Techniques (Including Social Media)</option>
     </select>
 
     <label>Notes</label>
-    <textarea name="notes"></textarea>
+    <textarea name="notes" placeholder="Optional"></textarea>
 
-    <button class="btn-primary" type="submit">
-      Submit RSVP
-    </button>
+    <button class="btn-primary" type="submit">Submit RSVP + Add to Calendar</button>
 
     <!-- LOGOS -->
     <div class="under-rsvp-logo">
-      <img src="assets/mmt-logo.jpg" alt="Move Mountains Team Coin Logo">
-      <img src="assets/open-logo.jpg" alt="Open Mind Open Doors Logo">
+      <img class="brand-logo" src="assets/coin-logo.jpeg" alt="Move Mountains Team Coin Logo">
+      <img class="brand-logo" src="assets/open-logo.jpeg" alt="Open Mind • Open Doors Logo">
 
       <div class="license-footer">
         Marc Howard Merritt – NYS Life, Health & Fixed Annuity Licensed since 2001 (LA #1010090)<br>
@@ -280,17 +298,190 @@ button{
 </div>
 
 <script>
-const START=new Date(2026,0,28),COUNT=10;
-const sel=document.getElementById("dateSelect");
-function nextWed(d){d=new Date(d);d.setDate(d.getDate()+((3-d.getDay()+7)%7));return d;}
-let d=nextWed(new Date()>START?new Date():START);
+/* =========================
+   SETTINGS (EDIT THESE)
+========================= */
+
+// Put your real Zoom link here
+const ZOOM_LINK = "https://zoom.us/j/XXXXXXXXXXX?pwd=YYYYYYYYYYY";
+
+// Series anchor and how many Wednesdays to show
+const START = new Date(2026,0,28); // Jan 28, 2026
+const COUNT = 10;
+
+// Session time (America/New_York): 7–8 PM
+const START_HOUR = 19; // 7 PM
+const END_HOUR   = 20; // 8 PM
+
+/* =========================
+   UPCOMING WEDNESDAYS
+========================= */
+
+const sel = document.getElementById("dateSelect");
+
+function nextWed(d){
+  d = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  d.setDate(d.getDate() + ((3 - d.getDay() + 7) % 7)); // 3 = Wed
+  return d;
+}
+
+function formatLong(d){
+  return d.toLocaleDateString(undefined,{month:"long",day:"numeric",year:"numeric"});
+}
+
+let base = (new Date() > START) ? new Date() : START;
+let d = nextWed(base);
+
+sel.innerHTML = '<option disabled selected>Select a Wednesday</option>';
+
 for(let i=0;i<COUNT;i++){
-  const o=document.createElement("option");
-  o.value=d.toISOString();
-  o.textContent=d.toLocaleDateString(undefined,{month:"long",day:"numeric",year:"numeric"});
+  const o = document.createElement("option");
+  o.value = d.toISOString();      // ISO stored
+  o.textContent = formatLong(d);  // pretty label shown
   sel.appendChild(o);
   d.setDate(d.getDate()+7);
 }
+
+/* =========================
+   CALENDAR (.ics) HELPERS
+========================= */
+
+function pad2(n){ return String(n).padStart(2,"0"); }
+
+function formatICSDateUTC(date){
+  // YYYYMMDDTHHMMSSZ in UTC
+  return (
+    date.getUTCFullYear() +
+    pad2(date.getUTCMonth()+1) +
+    pad2(date.getUTCDate()) + "T" +
+    pad2(date.getUTCHours()) +
+    pad2(date.getUTCMinutes()) +
+    pad2(date.getUTCSeconds()) + "Z"
+  );
+}
+
+function icsEscape(s){
+  return String(s || "")
+    .replace(/\\/g,"\\\\")
+    .replace(/\n/g,"\\n")
+    .replace(/,/g,"\\,")
+    .replace(/;/g,"\\;");
+}
+
+function buildICS({ title, description, location, startLocal, endLocal }){
+  const dtStamp = formatICSDateUTC(new Date());
+  const dtStart = formatICSDateUTC(startLocal);
+  const dtEnd   = formatICSDateUTC(endLocal);
+  const uid = `${Date.now()}-${Math.random().toString(16).slice(2)}@mmt-feg`;
+
+  return [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//FEG MMT//Training Invite//EN",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    "BEGIN:VEVENT",
+    `UID:${uid}`,
+    `DTSTAMP:${dtStamp}`,
+    `DTSTART:${dtStart}`,
+    `DTEND:${dtEnd}`,
+    `SUMMARY:${icsEscape(title)}`,
+    `DESCRIPTION:${icsEscape(description)}`,
+    `LOCATION:${icsEscape(location)}`,
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
+}
+
+function downloadICS(filename, text){
+  const blob = new Blob([text], {type:"text/calendar;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{
+    URL.revokeObjectURL(url);
+    a.remove();
+  }, 0);
+}
+
+/* =========================
+   RSVP: CAL + EMAIL
+========================= */
+
+document.getElementById("rsvpForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const f = new FormData(this);
+
+  const name  = (f.get("name") || "").toString().trim();
+  const email = (f.get("email") || "").toString().trim();
+  const dateISO = (f.get("dateISO") || "").toString().trim();
+  const topic = (f.get("topic") || "").toString().trim();
+  const notes = (f.get("notes") || "None").toString().trim();
+
+  const dateObj = new Date(dateISO);
+  const dateLabel = formatLong(dateObj);
+
+  // Start/end in local time
+  const startLocal = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate(), START_HOUR, 0, 0);
+  const endLocal   = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate(), END_HOUR,   0, 0);
+
+  // Build + download calendar invite
+  const calTitle = `FEG MMT Training: ${topic}`;
+  const calDesc =
+`FEG MMT (Move Mountains Team) Business Builder Training
+
+Attendee: ${name} (${email})
+Topic: ${topic}
+Date: ${dateLabel}
+Time: 7:00 PM – 8:00 PM (ET)
+
+Zoom Link:
+${ZOOM_LINK}
+
+Notes:
+${notes}
+
+Hosts:
+Marc Howard Merritt – 646-645-2453 – mhmerritt@gmail.com
+Marylene Teopengco-Merritt – 631-579-1904 – mteopengco@gmail.com`;
+
+  const ics = buildICS({
+    title: calTitle,
+    description: calDesc,
+    location: ZOOM_LINK,
+    startLocal,
+    endLocal
+  });
+
+  downloadICS(`FEG-MMT-Training-${dateObj.getFullYear()}-${pad2(dateObj.getMonth()+1)}-${pad2(dateObj.getDate())}.ics`, ics);
+
+  // Email RSVP to Marc + CC Marylene
+  const subject = `FEG MMT Wednesday Training RSVP – ${dateLabel}`;
+  const body =
+`FEG MMT Business Builder Training RSVP
+
+Name: ${name}
+Email: ${email}
+Wednesday Date Requested: ${dateLabel}
+Training Topic: ${topic}
+
+Zoom Link:
+${ZOOM_LINK}
+
+Notes:
+${notes}
+
+(Calendar invite .ics was downloaded when the RSVP was submitted.)`;
+
+  window.location.href =
+    "mailto:mhmerritt@gmail.com"
+    + "?cc=" + encodeURIComponent("mteopengco@gmail.com")
+    + "&subject=" + encodeURIComponent(subject)
+    + "&body=" + encodeURIComponent(body);
+});
 </script>
 
 </body>
