@@ -99,34 +99,6 @@ header p{
   margin:12px 0 18px;
 }
 
-/* LEFT CARD LOGO */
-.left-logo{
-  margin:22px auto 0;
-  text-align:center;
-}
-.left-logo img{
-  width:240px;
-  max-width:85%;
-  height:auto;
-  filter:drop-shadow(0 10px 26px rgba(0,0,0,.55));
-}
-
-/* RIGHT CARD LOGO (UNCHANGED) */
-.under-rsvp-logo{
-  text-align:center;
-  margin-top:18px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
-}
-.under-rsvp-logo .brand-logo{
-  width:160px;
-  max-width:70vw;
-  height:auto;
-  filter:drop-shadow(0 8px 20px rgba(0,0,0,.45));
-}
-
 label{
   display:block;
   margin-bottom:6px;
@@ -158,6 +130,18 @@ button{
   background:linear-gradient(90deg,#f5d07a,#38bdf8);
   color:#04121f;
 }
+
+/* RIGHT CARD COIN LOGO (ONLY LOGO LEFT) */
+.under-rsvp-logo{
+  text-align:center;
+  margin-top:18px;
+}
+.under-rsvp-logo img{
+  width:160px;
+  max-width:70vw;
+  height:auto;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.45));
+}
 </style>
 </head>
 
@@ -181,18 +165,15 @@ button{
 <div class="card pad">
 
   <div class="invite-title">YOU ARE IN THIS BUSINESS TO SUCCEED</div>
-  <div class="invite-sub">Let’s <b>GROW</b> Your FEG Business Together Through Teamwork</div>
+  <div class="invite-sub">
+    Let’s <b>GROW</b> Your FEG Business Together Through Teamwork
+  </div>
 
   <ul>
     <li>🚀 The Official FEG MMT Business Builders System – FAST TRACK</li>
     <li>🔥 The Momentum Effect</li>
     <li>📲 Recruitment & Prospecting Techniques (Including Social Media)</li>
   </ul>
-
-  <!-- OPEN MIND LOGO (NOW ONLY HERE) -->
-  <div class="left-logo">
-    <img src="assets/open-logo.jpg" alt="Open Mind • Open Doors Logo">
-  </div>
 
 </div>
 
@@ -201,6 +182,7 @@ button{
   <h2>RSVP – Select Your Wednesday Session</h2>
 
   <form id="rsvpForm">
+
     <label>Name</label>
     <input name="name" required>
 
@@ -212,10 +194,11 @@ button{
 
     <button class="btn-primary" type="submit">Submit RSVP</button>
 
-    <!-- COIN LOGO ONLY (UNCHANGED LOCATION) -->
+    <!-- MMT COIN LOGO (ONLY IMAGE IN FILE) -->
     <div class="under-rsvp-logo">
-      <img class="brand-logo" src="assets/mmt-logo.jpg" alt="Move Mountains Team Coin Logo">
+      <img src="assets/mmt-logo.jpg" alt="Move Mountains Team Coin Logo">
     </div>
+
   </form>
 </div>
 
