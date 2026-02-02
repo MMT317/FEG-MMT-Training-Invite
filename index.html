@@ -24,7 +24,7 @@ body{
     radial-gradient(900px 500px at 15% 12%, rgba(56,189,248,.22), transparent 55%),
     radial-gradient(800px 520px at 85% 18%, rgba(245,208,122,.18), transparent 58%),
     linear-gradient(rgba(7,20,39,.82), rgba(7,20,39,.90)),
-    url("assets/Blue_Mountains_clean.jpg") no-repeat center center fixed;
+    url("./assets/Blue_Mountains_clean.jpg") no-repeat center center fixed;
   background-size:cover;
 }
 
@@ -112,6 +112,31 @@ button{
   background:linear-gradient(90deg,#f5d07a,#38bdf8);
   color:#04121f;
 }
+
+/* LOGOS */
+.under-rsvp-logo{
+  text-align:center;
+  margin-top:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+}
+
+.under-rsvp-logo .brand-logo{
+  width:160px;
+  max-width:70vw;
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.45));
+}
+
+.license-footer{
+  margin-top:10px;
+  font-size:11px;
+  line-height:1.5;
+  opacity:.85;
+}
 </style>
 </head>
 
@@ -131,11 +156,11 @@ button{
 
 <div class="grid">
 
+<!-- INFO -->
 <div class="card pad">
   <h2>YOU ARE IN THIS BUSINESS TO SUCCEED</h2>
   <p>
-    Let’s <b>GROW</b> your FEG business together through teamwork.<br>
-    Trainings are held every Wednesday via Zoom.
+    Let’s <b>GROW</b> your FEG business together through teamwork.
   </p>
 
   <ul>
@@ -145,11 +170,13 @@ button{
   </ul>
 
   <p>
-    <b>🕖 Time:</b> 7:00 PM – 8:00 PM (60 minutes max)<br>
-    <b>📅 Begins:</b> Wednesday, January 28, 2026
+    <b>📅 Every Wednesday</b> starting <b>January 28, 2026</b><br>
+    <b>⏰ Time:</b> 7:00 PM – 8:00 PM (60 minutes max)<br>
+    <b>📍 Format:</b> Live via Zoom
   </p>
 </div>
 
+<!-- RSVP -->
 <div class="card pad">
   <h2>RSVP – Select Your Wednesday Session</h2>
 
@@ -175,6 +202,18 @@ button{
     <textarea name="notes"></textarea>
 
     <button class="btn-primary" type="submit">Submit RSVP</button>
+
+    <!-- LOGOS -->
+    <div class="under-rsvp-logo">
+      <img class="brand-logo" src="./assets/open-mind-open-doors.jpg" alt="Open Mind Open Doors Logo">
+      <img class="brand-logo" src="./assets/mmt-logo.jpg" alt="Move Mountains Team Coin Logo">
+
+      <div class="license-footer">
+        Marc Howard Merritt – marc@mmtfininsurance.com<br>
+        Marylene Teopengco-Merritt – marylene@mmtfininsurance.com<br>
+        Freedom Equity Group (FEG) – Independent Marketing Organization
+      </div>
+    </div>
 
   </form>
 </div>
