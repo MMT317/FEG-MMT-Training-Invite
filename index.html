@@ -106,21 +106,21 @@ button{
   color:#04121f;
 }
 
-/* LEFT CARD LOGO — OPEN MIND ONLY */
+/* OPEN MIND LOGO — LEFT CARD */
 .openmind-logo{
-  margin-top:30px;
+  margin:32px auto 10px;
   text-align:center;
 }
 .openmind-logo img{
-  width:240px;
-  max-width:85%;
+  width:260px;
+  max-width:90%;
   height:auto;
   display:block;
   margin:0 auto;
-  filter:drop-shadow(0 12px 30px rgba(0,0,0,.55));
+  filter:drop-shadow(0 12px 32px rgba(0,0,0,.55));
 }
 
-/* RIGHT CARD LOGO — MMT ONLY */
+/* MMT COIN LOGO — RIGHT CARD (UNCHANGED) */
 .mmt-logo{
   margin-top:20px;
   text-align:center;
@@ -174,9 +174,9 @@ button{
     <b>📍 Live via Zoom</b>
   </p>
 
-  <!-- OPEN MIND LOGO (ONLY PLACE IT EXISTS) -->
+  <!-- OPEN MIND LOGO (LEFT ONLY) -->
   <div class="openmind-logo">
-    <img src="./assets/open-logo.jpg" alt="Open Mind Open Doors Logo">
+    <img src="./assets/open-logo.jpg" alt="Open Mind • Open Doors Logo">
   </div>
 </div>
 
@@ -185,6 +185,7 @@ button{
   <h2>RSVP – Select Your Wednesday Session</h2>
 
   <form id="rsvpForm">
+
     <label>Name</label>
     <input name="name" required>
 
@@ -206,7 +207,7 @@ button{
 
     <button class="btn-primary" type="submit">Submit RSVP</button>
 
-    <!-- MMT LOGO ONLY -->
+    <!-- MMT COIN LOGO (RIGHT ONLY – KEPT) -->
     <div class="mmt-logo">
       <img src="./assets/mmt-logo.jpg" alt="Move Mountains Team Coin Logo">
       <div class="license-footer">
@@ -215,6 +216,7 @@ button{
         Freedom Equity Group (FEG) – Independent Marketing Organization
       </div>
     </div>
+
   </form>
 </div>
 
@@ -273,11 +275,7 @@ ${f.get("notes") || "None"}`;
     + "&subject=" + encodeURIComponent("FEG MMT Wednesday Training RSVP")
     + "&body=" + encodeURIComponent(body);
 });
-
- Force Pages rebuild
-  
 </script>
 
 </body>
 </html>
-
