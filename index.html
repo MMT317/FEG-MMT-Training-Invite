@@ -51,7 +51,6 @@ header h1{
   font-weight:950;
   letter-spacing:.14em;
   color:var(--gold);
-  text-shadow:0 4px 16px rgba(0,0,0,.65);
 }
 header p{
   margin-top:10px;
@@ -107,27 +106,28 @@ button{
   color:#04121f;
 }
 
-/* LOGO STYLES */
-.logo-left{
-  margin:28px auto 8px;
+/* LEFT CARD LOGO — OPEN MIND ONLY */
+.openmind-logo{
+  margin-top:30px;
   text-align:center;
 }
-.logo-left img{
-  width:240px;              /* RESIZED LARGER */
+.openmind-logo img{
+  width:240px;
   max-width:85%;
   height:auto;
   display:block;
   margin:0 auto;
-  filter:drop-shadow(0 10px 28px rgba(0,0,0,.55));
+  filter:drop-shadow(0 12px 30px rgba(0,0,0,.55));
 }
 
-.logo-right{
-  margin-top:18px;
+/* RIGHT CARD LOGO — MMT ONLY */
+.mmt-logo{
+  margin-top:20px;
   text-align:center;
 }
-.logo-right img{
+.mmt-logo img{
   width:160px;
-  max-width:70vw;
+  max-width:70%;
   height:auto;
   filter:drop-shadow(0 8px 20px rgba(0,0,0,.45));
 }
@@ -174,8 +174,8 @@ button{
     <b>📍 Live via Zoom</b>
   </p>
 
-  <!-- OPEN MIND LOGO — CENTERED & RESIZED -->
-  <div class="logo-left">
+  <!-- OPEN MIND LOGO (ONLY PLACE IT EXISTS) -->
+  <div class="openmind-logo">
     <img src="./assets/open-logo.jpg" alt="Open Mind Open Doors Logo">
   </div>
 </div>
@@ -185,7 +185,6 @@ button{
   <h2>RSVP – Select Your Wednesday Session</h2>
 
   <form id="rsvpForm">
-
     <label>Name</label>
     <input name="name" required>
 
@@ -207,8 +206,8 @@ button{
 
     <button class="btn-primary" type="submit">Submit RSVP</button>
 
-    <!-- MMT COIN LOGO ONLY -->
-    <div class="logo-right">
+    <!-- MMT LOGO ONLY -->
+    <div class="mmt-logo">
       <img src="./assets/mmt-logo.jpg" alt="Move Mountains Team Coin Logo">
       <div class="license-footer">
         Marc Howard Merritt – marc@mmtfininsurance.com<br>
@@ -216,7 +215,6 @@ button{
         Freedom Equity Group (FEG) – Independent Marketing Organization
       </div>
     </div>
-
   </form>
 </div>
 
@@ -234,13 +232,9 @@ function nextWednesday(d){
   x.setDate(x.getDate() + ((3 - x.getDay() + 7) % 7));
   return x;
 }
-
 function pretty(d){
   return d.toLocaleDateString(undefined,{
-    weekday:"long",
-    month:"long",
-    day:"numeric",
-    year:"numeric"
+    weekday:"long",month:"long",day:"numeric",year:"numeric"
   });
 }
 
@@ -248,7 +242,6 @@ let base = new Date() > START ? new Date() : START;
 let cur = nextWednesday(base);
 
 sel.innerHTML = '<option disabled selected>Select a Wednesday</option>';
-
 for(let i=0;i<COUNT;i++){
   const o = document.createElement("option");
   o.value = cur.toISOString();
