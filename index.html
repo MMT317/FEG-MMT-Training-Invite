@@ -12,6 +12,7 @@
   --shadow:0 22px 60px rgba(0,0,0,.45);
   --radius:26px;
 }
+
 *,*::before,*::after{box-sizing:border-box;}
 
 body{
@@ -23,16 +24,18 @@ body{
     radial-gradient(900px 500px at 15% 12%, rgba(56,189,248,.22), transparent 55%),
     radial-gradient(800px 520px at 85% 18%, rgba(245,208,122,.18), transparent 58%),
     linear-gradient(rgba(7,20,39,.82), rgba(7,20,39,.90)),
-    url("./assets/Blue_Mountains_clean.jpg") no-repeat center center fixed;
+    url("assets/Blue_Mountains_clean.jpg") no-repeat center center fixed;
   background-size:cover;
 }
 
+/* LICENSE BAR */
 .license-bar{
   background:#0f172a;
   color:#e5e7eb;
   font-size:12px;
   text-align:center;
   padding:8px 14px;
+  letter-spacing:.2px;
 }
 
 .wrap{
@@ -45,13 +48,16 @@ header{
   text-align:center;
   margin-bottom:28px;
 }
+
 header h1{
   margin:0;
   font-size:42px;
   font-weight:950;
   letter-spacing:.14em;
   color:var(--gold);
+  text-shadow:0 4px 16px rgba(0,0,0,.65);
 }
+
 header p{
   margin-top:10px;
   font-size:18px;
@@ -63,6 +69,7 @@ header p{
   grid-template-columns:1.15fr .85fr;
   gap:22px;
 }
+
 @media(max-width:980px){
   .grid{grid-template-columns:1fr;}
 }
@@ -72,8 +79,53 @@ header p{
   background:linear-gradient(180deg, rgba(10,30,53,.88), rgba(7,20,39,.92));
   border:1px solid rgba(255,255,255,.16);
   box-shadow:var(--shadow);
+  overflow:hidden;
 }
+
 .card.pad{padding:22px;}
+
+.invite-title{
+  text-align:center;
+  font-size:32px;
+  font-weight:950;
+  color:var(--gold);
+  letter-spacing:.05em;
+}
+
+.invite-sub{
+  text-align:center;
+  font-size:19px;
+  font-weight:850;
+  margin:12px 0 18px;
+}
+
+/* LEFT CARD LOGO */
+.left-logo{
+  margin:22px auto 0;
+  text-align:center;
+}
+.left-logo img{
+  width:240px;
+  max-width:85%;
+  height:auto;
+  filter:drop-shadow(0 10px 26px rgba(0,0,0,.55));
+}
+
+/* RIGHT CARD LOGO (UNCHANGED) */
+.under-rsvp-logo{
+  text-align:center;
+  margin-top:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.under-rsvp-logo .brand-logo{
+  width:160px;
+  max-width:70vw;
+  height:auto;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.45));
+}
 
 label{
   display:block;
@@ -101,42 +153,10 @@ button{
   font-size:15px;
   cursor:pointer;
 }
+
 .btn-primary{
   background:linear-gradient(90deg,#f5d07a,#38bdf8);
   color:#04121f;
-}
-
-/* OPEN MIND LOGO — LEFT CARD */
-.openmind-logo{
-  margin:32px auto 10px;
-  text-align:center;
-}
-.openmind-logo img{
-  width:260px;
-  max-width:90%;
-  height:auto;
-  display:block;
-  margin:0 auto;
-  filter:drop-shadow(0 12px 32px rgba(0,0,0,.55));
-}
-
-/* MMT COIN LOGO — RIGHT CARD (UNCHANGED) */
-.mmt-logo{
-  margin-top:20px;
-  text-align:center;
-}
-.mmt-logo img{
-  width:160px;
-  max-width:70%;
-  height:auto;
-  filter:drop-shadow(0 8px 20px rgba(0,0,0,.45));
-}
-
-.license-footer{
-  margin-top:10px;
-  font-size:11px;
-  line-height:1.5;
-  opacity:.85;
 }
 </style>
 </head>
@@ -159,25 +179,21 @@ button{
 
 <!-- LEFT CARD -->
 <div class="card pad">
-  <h2>YOU ARE IN THIS BUSINESS TO SUCCEED</h2>
-  <p>Let’s <b>GROW</b> your FEG business together through teamwork.</p>
+
+  <div class="invite-title">YOU ARE IN THIS BUSINESS TO SUCCEED</div>
+  <div class="invite-sub">Let’s <b>GROW</b> Your FEG Business Together Through Teamwork</div>
 
   <ul>
-    <li>🚀 FEG MMT Business Builders System – FAST TRACK</li>
+    <li>🚀 The Official FEG MMT Business Builders System – FAST TRACK</li>
     <li>🔥 The Momentum Effect</li>
-    <li>📲 Recruitment & Prospecting (Including Social Media)</li>
+    <li>📲 Recruitment & Prospecting Techniques (Including Social Media)</li>
   </ul>
 
-  <p>
-    <b>📅 Every Wednesday</b> starting <b>January 28, 2026</b><br>
-    <b>⏰ 7:00 PM – 8:00 PM (ET)</b><br>
-    <b>📍 Live via Zoom</b>
-  </p>
-
-  <!-- OPEN MIND LOGO (LEFT ONLY) -->
-  <div class="openmind-logo">
-    <img src="./assets/open-logo.jpg" alt="Open Mind • Open Doors Logo">
+  <!-- OPEN MIND LOGO (NOW ONLY HERE) -->
+  <div class="left-logo">
+    <img src="assets/open-logo.jpg" alt="Open Mind • Open Doors Logo">
   </div>
+
 </div>
 
 <!-- RIGHT CARD -->
@@ -185,7 +201,6 @@ button{
   <h2>RSVP – Select Your Wednesday Session</h2>
 
   <form id="rsvpForm">
-
     <label>Name</label>
     <input name="name" required>
 
@@ -195,28 +210,12 @@ button{
     <label>Which upcoming Wednesday would you like to attend?</label>
     <select name="dateISO" id="dateSelect" required></select>
 
-    <label>Training Topic</label>
-    <select name="topic" required>
-      <option>FEG MMT Business Builders Fast Track</option>
-      <option>The Momentum Effect</option>
-      <option>Recruitment & Prospecting Techniques</option>
-    </select>
-
-    <label>Notes</label>
-    <textarea name="notes"></textarea>
-
     <button class="btn-primary" type="submit">Submit RSVP</button>
 
-    <!-- MMT COIN LOGO (RIGHT ONLY – KEPT) -->
-    <div class="mmt-logo">
-      <img src="./assets/mmt-logo.jpg" alt="Move Mountains Team Coin Logo">
-      <div class="license-footer">
-        Marc Howard Merritt – marc@mmtfininsurance.com<br>
-        Marylene Teopengco-Merritt – marylene@mmtfininsurance.com<br>
-        Freedom Equity Group (FEG) – Independent Marketing Organization
-      </div>
+    <!-- COIN LOGO ONLY (UNCHANGED LOCATION) -->
+    <div class="under-rsvp-logo">
+      <img class="brand-logo" src="assets/mmt-logo.jpg" alt="Move Mountains Team Coin Logo">
     </div>
-
   </form>
 </div>
 
@@ -224,57 +223,27 @@ button{
 </div>
 
 <script>
-/* ROLLING WEDNESDAY DROPDOWN */
 const START = new Date(2026,0,28);
 const COUNT = 10;
 const sel = document.getElementById("dateSelect");
 
-function nextWednesday(d){
-  const x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-  x.setDate(x.getDate() + ((3 - x.getDay() + 7) % 7));
-  return x;
-}
-function pretty(d){
-  return d.toLocaleDateString(undefined,{
-    weekday:"long",month:"long",day:"numeric",year:"numeric"
-  });
+function nextWed(d){
+  d = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  d.setDate(d.getDate() + ((3 - d.getDay() + 7) % 7));
+  return d;
 }
 
-let base = new Date() > START ? new Date() : START;
-let cur = nextWednesday(base);
+let base = (new Date() > START) ? new Date() : START;
+let d = nextWed(base);
 
 sel.innerHTML = '<option disabled selected>Select a Wednesday</option>';
 for(let i=0;i<COUNT;i++){
   const o = document.createElement("option");
-  o.value = cur.toISOString();
-  o.textContent = pretty(cur);
+  o.value = d.toISOString();
+  o.textContent = d.toDateString();
   sel.appendChild(o);
-  cur.setDate(cur.getDate()+7);
+  d.setDate(d.getDate()+7);
 }
-
-/* EMAIL RSVP */
-document.getElementById("rsvpForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  const f = new FormData(this);
-  const d = new Date(f.get("dateISO"));
-
-  const body =
-`FEG MMT Business Builder Training RSVP
-
-Name: ${f.get("name")}
-Email: ${f.get("email")}
-Date: ${pretty(d)}
-Training Topic: ${f.get("topic")}
-
-Notes:
-${f.get("notes") || "None"}`;
-
-  window.location.href =
-    "mailto:marc@mmtfininsurance.com"
-    + "?cc=" + encodeURIComponent("marylene@mmtfininsurance.com")
-    + "&subject=" + encodeURIComponent("FEG MMT Wednesday Training RSVP")
-    + "&body=" + encodeURIComponent(body);
-});
 </script>
 
 </body>
