@@ -107,7 +107,7 @@ button{
   color:#04121f;
 }
 
-/* LOGOS */
+/* LOGO BLOCK */
 .logo-block{
   margin-top:18px;
   text-align:center;
@@ -144,7 +144,7 @@ button{
 
 <div class="grid">
 
-<!-- LEFT / CONTENT -->
+<!-- LEFT CARD (CONTENT) -->
 <div class="card pad">
   <h2>YOU ARE IN THIS BUSINESS TO SUCCEED</h2>
   <p>Let’s <b>GROW</b> your FEG business together through teamwork.</p>
@@ -161,13 +161,13 @@ button{
     <b>📍 Live via Zoom</b>
   </p>
 
-  <!-- OPEN MIND LOGO (LEFT / OPPOSITE PAGE) -->
+  <!-- OPEN MIND LOGO — LEFT CARD ONLY -->
   <div class="logo-block">
     <img src="./assets/open-logo.jpg" alt="Open Mind Open Doors Logo">
   </div>
 </div>
 
-<!-- RIGHT / RSVP -->
+<!-- RIGHT CARD (RSVP) -->
 <div class="card pad">
   <h2>RSVP – Select Your Wednesday Session</h2>
 
@@ -194,7 +194,7 @@ button{
 
     <button class="btn-primary" type="submit">Submit RSVP</button>
 
-    <!-- MMT COIN LOGO (RIGHT PAGE) -->
+    <!-- MMT COIN LOGO — RIGHT CARD ONLY -->
     <div class="logo-block">
       <img src="./assets/mmt-logo.jpg" alt="Move Mountains Team Coin Logo">
       <div class="license-footer">
@@ -211,7 +211,7 @@ button{
 </div>
 
 <script>
-/* ========= ROLLING WEDNESDAY DROPDOWN ========= */
+/* ROLLING WEDNESDAY DROPDOWN */
 const START = new Date(2026,0,28);
 const COUNT = 10;
 const sel = document.getElementById("dateSelect");
@@ -244,7 +244,7 @@ for(let i=0;i<COUNT;i++){
   cur.setDate(cur.getDate()+7);
 }
 
-/* ========= EMAIL RSVP ========= */
+/* EMAIL RSVP */
 document.getElementById("rsvpForm").addEventListener("submit", function(e){
   e.preventDefault();
   const f = new FormData(this);
