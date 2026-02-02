@@ -12,7 +12,6 @@
   --shadow:0 22px 60px rgba(0,0,0,.45);
   --radius:26px;
 }
-
 *,*::before,*::after{box-sizing:border-box;}
 
 body{
@@ -46,7 +45,6 @@ header{
   text-align:center;
   margin-bottom:28px;
 }
-
 header h1{
   margin:0;
   font-size:42px;
@@ -55,7 +53,6 @@ header h1{
   color:var(--gold);
   text-shadow:0 4px 16px rgba(0,0,0,.65);
 }
-
 header p{
   margin-top:10px;
   font-size:18px;
@@ -67,7 +64,6 @@ header p{
   grid-template-columns:1.15fr .85fr;
   gap:22px;
 }
-
 @media(max-width:980px){
   .grid{grid-template-columns:1fr;}
 }
@@ -78,7 +74,6 @@ header p{
   border:1px solid rgba(255,255,255,.16);
   box-shadow:var(--shadow);
 }
-
 .card.pad{padding:22px;}
 
 label{
@@ -107,27 +102,20 @@ button{
   font-size:15px;
   cursor:pointer;
 }
-
 .btn-primary{
   background:linear-gradient(90deg,#f5d07a,#38bdf8);
   color:#04121f;
 }
 
 /* LOGOS */
-.under-rsvp-logo{
-  text-align:center;
+.logo-block{
   margin-top:18px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:12px;
+  text-align:center;
 }
-
-.under-rsvp-logo .brand-logo{
+.logo-block img{
   width:160px;
   max-width:70vw;
   height:auto;
-  object-fit:contain;
   filter:drop-shadow(0 8px 20px rgba(0,0,0,.45));
 }
 
@@ -156,12 +144,10 @@ button{
 
 <div class="grid">
 
-<!-- INFO -->
+<!-- LEFT / CONTENT -->
 <div class="card pad">
   <h2>YOU ARE IN THIS BUSINESS TO SUCCEED</h2>
-  <p>
-    Let’s <b>GROW</b> your FEG business together through teamwork.
-  </p>
+  <p>Let’s <b>GROW</b> your FEG business together through teamwork.</p>
 
   <ul>
     <li>🚀 FEG MMT Business Builders System – FAST TRACK</li>
@@ -171,12 +157,17 @@ button{
 
   <p>
     <b>📅 Every Wednesday</b> starting <b>January 28, 2026</b><br>
-    <b>⏰ Time:</b> 7:00 PM – 8:00 PM (60 minutes max)<br>
-    <b>📍 Format:</b> Live via Zoom
+    <b>⏰ 7:00 PM – 8:00 PM (ET)</b><br>
+    <b>📍 Live via Zoom</b>
   </p>
+
+  <!-- OPEN MIND LOGO (LEFT / OPPOSITE PAGE) -->
+  <div class="logo-block">
+    <img src="./assets/open-logo.jpg" alt="Open Mind Open Doors Logo">
+  </div>
 </div>
 
-<!-- RSVP -->
+<!-- RIGHT / RSVP -->
 <div class="card pad">
   <h2>RSVP – Select Your Wednesday Session</h2>
 
@@ -203,11 +194,9 @@ button{
 
     <button class="btn-primary" type="submit">Submit RSVP</button>
 
-    <!-- LOGOS -->
-    <div class="under-rsvp-logo">
-      <img class="brand-logo" src="./assets/open-mind-open-doors.jpg" alt="Open Mind Open Doors Logo">
-      <img class="brand-logo" src="./assets/mmt-logo.jpg" alt="Move Mountains Team Coin Logo">
-
+    <!-- MMT COIN LOGO (RIGHT PAGE) -->
+    <div class="logo-block">
+      <img src="./assets/mmt-logo.jpg" alt="Move Mountains Team Coin Logo">
       <div class="license-footer">
         Marc Howard Merritt – marc@mmtfininsurance.com<br>
         Marylene Teopengco-Merritt – marylene@mmtfininsurance.com<br>
@@ -223,8 +212,7 @@ button{
 
 <script>
 /* ========= ROLLING WEDNESDAY DROPDOWN ========= */
-
-const START = new Date(2026,0,28); // Jan 28, 2026
+const START = new Date(2026,0,28);
 const COUNT = 10;
 const sel = document.getElementById("dateSelect");
 
@@ -257,10 +245,8 @@ for(let i=0;i<COUNT;i++){
 }
 
 /* ========= EMAIL RSVP ========= */
-
 document.getElementById("rsvpForm").addEventListener("submit", function(e){
   e.preventDefault();
-
   const f = new FormData(this);
   const d = new Date(f.get("dateISO"));
 
